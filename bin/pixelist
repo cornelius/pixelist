@@ -1,0 +1,41 @@
+#!/usr/bin/ruby
+
+require_relative "../lib/pixelist"
+
+include GLI::App
+
+program_desc "Fun with Pixels"
+
+flag [:p, :pixels], default_value: "beautiful.pixels"
+
+desc "Initialize pixels file"
+command :init do |c|
+  c.action do |global_options, _, args|
+    CliController.new(global_options[:pixels]).init(args)
+  end
+end
+
+desc "Show pixels"
+command :show do |c|
+  c.action do |global_options|
+    CliController.new(global_options[:pixels]).show
+  end
+end
+
+desc "Set pixel"
+command :set do |c|
+  c.action do |global_options, _, args|
+    CliController.new(global_options[:pixels]).set(args)
+  end
+end
+
+desc "Do work"
+command :work do |c|
+  c.switch :show
+  c.flag :sleep, default_value: 0.1
+  c.action do |global_options, options, args|
+    CliController.new(global_options[:pixels]).work(args[0], show: options[:show], sleep: options[:sleep].to_f)
+  end
+end
+
+exit run(ARGV)
