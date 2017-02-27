@@ -10,7 +10,7 @@ editor. Each character is representing one pixel.
 
 There is a plugin framework which can be used to add workers which run
 on a pixel matrix. This can be used to implement algorithms such as
-[Conway's Game of Life]:
+[Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life):
 
 ```
 Pixelist Life (step 50)
