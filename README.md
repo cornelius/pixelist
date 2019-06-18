@@ -30,3 +30,20 @@ Pixelist is meant for experimenting with algorithm which operate on a simple
 pixel matrix and learn or experiment with programming techniques such as TDD.
 If you find creative use for it, please
 [let me know](mailto:schumacher@kde.org).
+
+## Running in docker
+
+There is a Dockerfile you can use to build a container in which you can run
+pixelist. Build the container by executing a command like
+
+    docker build -t pixelist .
+
+Then run the container with
+
+    docker run -t pixelist
+
+This will execute the default command which runs the game of life.
+
+To execute another command run it with a command such as
+
+    docker run pixelist bin/pixelist -p examples/life.pixels show
