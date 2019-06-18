@@ -7,4 +7,4 @@ RUN bundle install
 
 COPY . .
 
-CMD ["bin/pixelist", "-p", "examples/life.pixels", "work", "life", "--show"]
+CMD ["bin/pixelist", "-p", "examples/crystal.pixels", "work", "crystal", "--show"]
