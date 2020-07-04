@@ -32,9 +32,12 @@ end
 desc "Do work"
 command :work do |c|
   c.switch :show
+  c.switch :keep_frames
   c.flag :sleep, default_value: 0.1
   c.action do |global_options, options, args|
-    CliController.new(global_options[:pixels]).work(args[0], show: options[:show], sleep: options[:sleep].to_f)
+    CliController.new(global_options[:pixels]).work(args[0],
+      show: options[:show], sleep: options[:sleep].to_f,
+      keep_frames: options[:keep_frames])
   end
 end
 

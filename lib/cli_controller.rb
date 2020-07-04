@@ -38,8 +38,9 @@ class CliController
     display.save
   end
 
-  def work(worker_name, show: false, sleep: 0.1)
+  def work(worker_name, show: false, sleep: 0.1, keep_frames: false)
     display = Display.new
+    display.keep_frames = keep_frames
     display.load(@pixels_file)
 
     require_relative "../workers/#{worker_name}"

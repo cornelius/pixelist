@@ -1,12 +1,14 @@
 class Display
   attr_reader :matrix, :width, :height, :filename
-  attr_accessor :enable_borders
+  attr_accessor :enable_borders, :keep_frames
 
   def initialize
     @matrix = ""
     @widht = 0
     @height = 0
     @enable_borders = true
+    @keep_frames = false
+    @frame_count = 1
   end
 
   def init(width:, height:)
@@ -109,7 +111,13 @@ class Display
       @filename = filename
     end
     if @filename
-      File.write(@filename, @matrix)
+      if keep_frames
+        effective_path = File.join(File.dirname(@filename),File.basename(@filename, ".pixels") + "-" + sprintf("%03d", @frame_count) + ".pixels")
+        @frame_count += 1
+      else
+        effective_path = @filename
+      end
+      File.write(effective_path, @matrix)
     end
   end
 

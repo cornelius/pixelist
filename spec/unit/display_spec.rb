@@ -288,5 +288,23 @@ describe Display do
         subject.save
       }.to_not raise_error
     end
+
+    it "saves to numbered file" do
+      subject.keep_frames = true
+
+      load_file = ""
+      save_dir = given_directory do
+        load_file = given_file("simple.pixels")
+      end
+
+      subject.load(load_file)
+      subject.save
+
+      expect(File.exist?(File.join(save_dir, "simple-001.pixels"))).to be(true)
+
+      subject.save
+
+      expect(File.exist?(File.join(save_dir, "simple-002.pixels"))).to be(true)
+    end
   end
 end
