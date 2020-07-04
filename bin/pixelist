@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 require_relative "../lib/pixelist"
 
@@ -30,11 +30,15 @@ command :set do |c|
 end
 
 desc "Do work"
+arg :worker
 command :work do |c|
   c.switch :show
   c.switch :keep_frames
   c.flag :sleep, default_value: 0.1
   c.action do |global_options, options, args|
+    if args.empty?
+      raise "Worker name required"
+    end
     CliController.new(global_options[:pixels]).work(args[0],
       show: options[:show], sleep: options[:sleep].to_f,
       keep_frames: options[:keep_frames])
